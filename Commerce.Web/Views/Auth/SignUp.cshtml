@@ -1,0 +1,52 @@
+﻿@model SignUpViewModel
+
+@{
+    ViewData["Title"] = "SignUp";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="tr-TR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kayıt Ol</title>
+    <link rel="stylesheet" href="~/assets/css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <main>
+        <section id="register">
+            <div id="register-title">
+                <h1>Kayıt Ol</h1>
+            </div>
+            <form id="register-form" asp-controller="Auth" asp-action="SignUp" method="post">
+                <div class="register-control">
+                    <label for="name" asp-for="FirstName">Ad</label>
+                    <input id="name" asp-for="FirstName" type="text" placeholder="Ad Giriniz">
+                </div>
+                <div class="register-control">
+                    <label for="surname" asp-for="LastName">Soyad</label>
+                    <input id="surname" asp-for="LastName" type="text" placeholder="Soyad Giriniz">
+                </div>
+                <div class="register-control">
+                    <label for="username" asp-for="UserName">Kullanıcı Adı</label>
+                    <input id="username" asp-for="UserName" type="text" placeholder="Kullanıcı Adı Giriniz">
+                </div>
+                <div class="register-control">
+                    <label for="email" asp-for="Email">E Posta</label>
+                    <input id="email" asp-for="Email" type="text" placeholder="E Posta Giriniz">
+                </div>
+                <div class="register-control">
+                    <label for="password" asp-for="Password">Parola</label>
+                    <input id="password" asp-for="Password" type="password" placeholder="Parola Giriniz">
+                </div>
+                <button id="register-submit">Kayıt Ol</button>
+            </form>
+        </section>
+    </main>
+</body>
+</html>

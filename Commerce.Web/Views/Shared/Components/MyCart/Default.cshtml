@@ -1,0 +1,46 @@
+﻿@model List<CartViewModel>
+
+<div class="row row-cols-1 row-cols-md-3 g-4">
+    @foreach (var item in Model)
+    {
+        <div id="basket-list">
+            <ul>
+                <li>
+                    <div class="basket-image">
+                        <img src="@item.ImageUrl" alt="">
+                    </div>
+                    <div class="basket-title">
+                        <h4>@item.Name</h4>
+                    </div>
+                    <div class="basket-count">
+                        <button class="basket-minus">
+                            <a asp-controller="UserProduct" asp-action="DeleteCart" asp-route-productId="@item.ProductId">-</a>
+                        </button>
+                        <h6>1</h6>
+                        <button class="basket-plus">
+                            <a asp-controller="UserProduct" asp-action="AddCart" asp-route-productId="@item.ProductId">+</a>
+                        </button>
+                    </div>
+                    <div class="basket-price">
+                        <h5>@item.Price</h5>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div id="basket-total">
+            <p>Total:</p>
+            @if (@Model.FirstOrDefault()?.TotalPrice == null)
+            {
+                <p>Toplam Sepet Fiyatı: 0</p>
+            }
+            else
+            {
+                <p>Toplam Sepet Fiyatı: @Model.FirstOrDefault()?.TotalPrice.ToString("C")</p>
+            }
+        </div>
+        <button id="basket-button">
+            <a asp-controller="UserProduct" asp-action="AllDeleteCart">Sepeti Boşalt</a>
+        </button>
+    }
+</div>
+
