@@ -2,83 +2,54 @@
 
 @{
     ViewData["Title"] = "AddCart";
-    Layout = null;
+    Layout = "~/Views/Shared/_DarkLayout.cshtml";
 }
 
-<!DOCTYPE html>
-<html lang="tr-TR">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bluetooth Kulaklık Üçüncü Seri</title>
-    <link rel="stylesheet" href="~/assets/css/style.css">
-    <link rel="shortcut icon" href="~/assets/img/favicon.ico" type="image/x-icon">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-</head>
-<body>
-    <header>
-    </header>
-
-    <main>
-        <form asp-controller="UserProduct" asp-action="AddCart" method="post">
-            <section id="details">
-                <div id="details-popup">
-                    <div id="popup-container">
-                        <i class="fa-solid fa-xmark"></i>
-                        <img src="#">
-                    </div>
+<form asp-controller="UserProduct" asp-action="AddCart" method="post">
+    <section id="details">
+        <div id="details-popup">
+            <div id="popup-container">
+                <i class="fa-solid fa-xmark"></i>
+                <img src="#">
+            </div>
+        </div>
+        <div id="main-breadcrumb">
+            <div class="container">
+                <ul>
+                    <li><a asp-controller="UserProduct" asp-action="Main">Ürünler</a></li>
+                    <span>/</span>
+                    <li>@Model.Name</li>
+                </ul>
+            </div>
+        </div>
+        <div class="container">
+            <div id="details-image">
+                <div id="details-main-image">
+                    <img src="@Model.ImageUrl" alt="Bluetooth Kulaklık Üçüncü Seri">
                 </div>
-                <div id="main-breadcrumb">
-                    <div class="container">
-                        <ul>
-                            <li><a asp-controller="Product" asp-action="Main">Ürünler</a></li>
-                            <span>/</span>
-                            <li>@Model.Name</li>
-                        </ul>
-                    </div>
+                <div id="details-sub-images">
+                    <img src="@Model.ImageUrl2" alt="Bluetooth Kulaklık Üçüncü Seri Detay">
+                    <img src="@Model.ImageUrl3" alt="Bluetooth Kulaklık Üçüncü Seri Detay">
+                    <img src="@Model.ImageUrl4" alt="Bluetooth Kulaklık Üçüncü Seri Detay">
                 </div>
-                <div class="container">
-                    <div id="details-image">
-                        <div id="details-main-image">
-                            <img src="@Model.ImageUrl" alt="Bluetooth Kulaklık Üçüncü Seri">
-                        </div>
-                        <div id="details-sub-images">
-                            @* Buraya bak *@
-                            <img src="assets/img/products/empty.png" alt="Bluetooth Kulaklık Üçüncü Seri Detay">
-                            <img src="assets/img/products/empty.png" alt="Bluetooth Kulaklık Üçüncü Seri Detay">
-                            <img src="assets/img/products/empty.png" alt="Bluetooth Kulaklık Üçüncü Seri Detay">
-                        </div>
-                    </div>
-                    <div id="details-content">
-                        <h1>@Model.Name</h1>
-                        <div id="details-text">
-                            <p>@Model.Description</p>
-                        </div>
-                        <div id="details-price">
-                            <h2>@Model.Price</h2>
-                        </div>
-                        <button id="details-basket">Sepete Ekle</button>
-                    </div>
-                    <div id="details-collapse">
-                        <div id="collapse-title">
-                            <ul>
-                                <li name="description" class="active">@Model.Description</li>
-                            </ul>
-                        </div>
-                    </div>
+            </div>
+            <div id="details-content">
+                <h1>@Model.Name</h1>
+                <div id="details-text">
+                    <p>@Model.Description</p>
                 </div>
-            </section>
-        </form>
-    </main>
-
-    <script src="https://kit.fontawesome.com/486aaf834f.js" crossorigin="anonymous"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="~/assets/js/header.js"></script>
-    <script src="~/assets/js/index.js"></script>
-    <script src="~/assets/js/details.js"></script>
-</body>
-</html>
-
+                <div id="details-price">
+                    <h2>@Model.Price</h2>
+                </div>
+                <button id="details-basket">Sepete Ekle</button>
+            </div>
+            <div id="details-collapse">
+                <div id="collapse-title">
+                    <ul>
+                        <li name="description" class="active">@Model.Description</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+</form>

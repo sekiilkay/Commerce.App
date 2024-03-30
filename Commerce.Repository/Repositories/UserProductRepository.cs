@@ -80,7 +80,8 @@ namespace Commerce.Repository.Repositories
                         ImageUrl = product.ImageUrl,
                         Count = userProduct.Count,
                         TotalPrice = totalAmount,
-                        ProductId = product.Id
+                        ProductId = product.Id,
+                        Amount = userProduct.Amount
                     };
 
                     cartViewModels.Add(cartViewModel);
@@ -113,12 +114,16 @@ namespace Commerce.Repository.Repositories
             existingProductCart!.Count--;
 
             if (existingProductCart.Count == 0)
+            {
                 _context.UserProducts.Remove(existingProductCart);
+                _context.SaveChanges();
+            }
 
             else
             {
                 existingProductCart.Amount = existingProductCart.Count * product!.Price;
                 _context.UserProducts.Update(existingProductCart);
+                _context.SaveChanges();
             }
 
             var cart = _context.Carts.FirstOrDefault(x => x.AppUserId == userId);
@@ -130,41 +135,14 @@ namespace Commerce.Repository.Repositories
                     .Sum(x => x.Amount);
 
                 _context.Carts.Update(cart);
+                _context.SaveChanges();
             }
-
-            _context.SaveChanges();
 
             var totalProductCount = _context.UserProducts.
                 Where(x => x.AppUserId == userId).
                 Sum(x => x.Count);
 
             return totalProductCount != 0;
-        }
-
-        public void DeleteProductCart(UserProduct userProduct)
-        {
-            var userId = _httpContextAccessor.HttpContext!.User.FindFirst(x => x.Type == ClaimTypes.NameIdentifier)!.Value;
-            var productId = userProduct.ProductId;
-            var product = _context.Products.Find(productId);
-
-            var existingProductCart = _context.UserProducts
-                .FirstOrDefault(x => x.ProductId == productId && x.AppUserId == userId);
-
-            _context.UserProducts.Remove(existingProductCart!);
-            _context.SaveChanges();
-
-            var cart = _context.Carts.FirstOrDefault(x => x.AppUserId == userId);
-
-            if (cart != null)
-            {
-                cart.TotalPrice = _context.UserProducts
-                    .Where(x => x.AppUserId == userId)
-                    .Sum(x => x.Amount);
-
-                _context.Carts.Update(cart);
-            }
-
-            _context.SaveChanges();
         }
 
         public List<UserProduct> LoggedUserCart()

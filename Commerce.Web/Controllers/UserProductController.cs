@@ -16,9 +16,13 @@ namespace Commerce.Web.Controllers
             _productService = productService;
         }
 
-        public IActionResult Index()
+        public IActionResult AddProductMyCart(int productId, UserProduct userProduct)
         {
-            return View(_userProductService.CartViewModel());
+            var product = _productService.GetById(productId);
+            userProduct.ProductId = product.Id;
+            _userProductService.AddCart(userProduct);
+
+            return RedirectToAction(nameof(CartController.AddCart), "Cart");
         }
         public IActionResult AddCart(int productId)
         {
@@ -34,6 +38,34 @@ namespace Commerce.Web.Controllers
             _userProductService.AddCart(userProduct);
 
             return RedirectToAction(nameof(CartController.AddCart), "Cart");
+        }
+
+        public IActionResult AllDeleteCart()
+        {
+            _userProductService.DeleteAllProduct();
+            return RedirectToAction(nameof(CartController.DeleteCart), "Cart");
+        }
+
+        public IActionResult DeleteCart(int productId, UserProduct userProduct)
+        {
+            var product = _productService.GetById(productId);
+            userProduct.ProductId = product.Id;
+
+            var isSucess = _userProductService.DeleteCart(userProduct);
+
+            if (isSucess)
+                return RedirectToAction(nameof(UserProductController.Main), "UserProduct");
+            else
+                return RedirectToAction(nameof(CartController.DeleteCart), "Cart");
+        }
+
+        public IActionResult Main()
+        {
+            return View();
+        }
+        public IActionResult MainPartial()
+        {
+            return View(_productService.GetAll());
         }
     }
 }

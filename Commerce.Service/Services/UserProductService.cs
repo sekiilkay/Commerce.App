@@ -43,10 +43,5 @@ namespace Commerce.Service.Services
         {
             _userProductRepository.DeleteAllProduct();
         }
-
-        public void DeleteProductCart(UserProduct userProduct)
-        {
-            _userProductRepository.DeleteProductCart(userProduct);
-        }
     }
 }

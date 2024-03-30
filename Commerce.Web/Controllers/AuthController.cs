@@ -34,7 +34,7 @@ namespace Commerce.Web.Controllers
                 return View();
             }
 
-            return RedirectToAction(nameof(AuthController.SignUp));
+            return RedirectToAction(nameof(AuthController.SignIn));
         }
 
         [HttpGet]
@@ -57,7 +57,7 @@ namespace Commerce.Web.Controllers
                 return View();
             }
 
-            return RedirectToAction(nameof(ProductController.Main), "Product");
+            return RedirectToAction(nameof(UserProductController.Main), "UserProduct");
         }
         public async Task<IActionResult> LogOut()
         {

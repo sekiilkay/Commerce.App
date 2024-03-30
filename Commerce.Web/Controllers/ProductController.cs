@@ -7,23 +7,8 @@ namespace Commerce.Web.Controllers
     [Authorize]
     public class ProductController : Controller
     {
-        private readonly IProductService _productService;
-        public ProductController(IProductService productService)
+        public ProductController()
         {
-            _productService = productService;
-        }
-
-        public IActionResult Main()
-        {
-            return View(_productService.GetAll());
-        }
-        public PartialViewResult MainPartial()
-        {
-            return PartialView();
-        }
-        public PartialViewResult HeaderPartial()
-        {
-            return PartialView();
         }
     }
 }

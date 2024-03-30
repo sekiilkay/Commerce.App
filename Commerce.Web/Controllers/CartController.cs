@@ -19,14 +19,14 @@ namespace Commerce.Web.Controllers
         public IActionResult AddCart(Cart cart)
         {
             _cartService.AddCart(cart);
-            return RedirectToAction(nameof(UserProductController.Index), "UserProduct");
+            return RedirectToAction(nameof(UserProductController.Main), "UserProduct");
         }
 
         public IActionResult DeleteCart()
         {
             var cart = _cartService.LoggedUserCart();
             _cartService.Delete(cart);
-            return RedirectToAction(nameof(UserProductController.Index), "UserProduct");
+            return RedirectToAction(nameof(UserProductController.Main), "UserProduct");
         }
     }
 }

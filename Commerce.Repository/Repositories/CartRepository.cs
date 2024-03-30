@@ -20,6 +20,13 @@ namespace Commerce.Repository.Repositories
             _httpContextAccessor = httpContextAccessor;
         }
 
+        public Cart LoggedUserCart()
+        {
+            var userId = _httpContextAccessor.HttpContext!.User.FindFirst(x => x.Type == ClaimTypes.NameIdentifier)!.Value;
+
+            return (_context.Carts
+                .FirstOrDefault(x => x.AppUserId == userId))!;
+        }
         public void AddCart(Cart cart)
         {
             var userId = _httpContextAccessor.HttpContext!.User.FindFirst(x => x.Type == ClaimTypes.NameIdentifier)!.Value;
@@ -51,14 +58,6 @@ namespace Commerce.Repository.Repositories
             }
 
             _context.SaveChanges();
-        }
-
-        public Cart LoggedUserCart()
-        {
-            var userId = _httpContextAccessor.HttpContext!.User.FindFirst(x => x.Type == ClaimTypes.NameIdentifier)!.Value;
-
-            return (_context.Carts
-                .FirstOrDefault(x => x.AppUserId == userId))!;
         }
     }
 }

@@ -1,12 +1,12 @@
 ﻿using Commerce.Core.Services;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Commerce.Web.ViewComponents.Cart
+namespace Commerce.Web.ViewComponents.Header
 {
-    public class MyCart : ViewComponent
+    public class HeaderList : ViewComponent
     {
         private readonly IUserProductService _userProductService;
-        public MyCart(IUserProductService userProductService)
+        public HeaderList(IUserProductService userProductService)
         {
             _userProductService = userProductService;
         }

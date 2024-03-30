@@ -1,6 +1,4 @@
-﻿@model List<Product>
-
-@{
+﻿@{
     Layout = null;
 }
 
@@ -19,18 +17,16 @@
 </head>
 <body>
     <header>
-        @await Html.PartialAsync("HeaderPartial")
+        @await Component.InvokeAsync("HeaderList")
     </header>
 
-    <main>        
+    <main>
         <section id="products">
             <div class="container">
                 <div id="products-content">
                     <div id="products-content">
                         <div id="tüm-ürünler" class="products-category" style="display: flex;">
-                            <a href="bluetooth-kulaklik-pro.html">
-                                @await Html.PartialAsync("MainPartial")
-                            </a>
+                            @await Component.InvokeAsync("ProductList")
                         </div>
                     </div>
                 </div>
@@ -40,6 +36,7 @@
 
     <script src="https://kit.fontawesome.com/486aaf834f.js" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="~/assets/js/header.js"></script>
     <script src="~/assets/js/index.js"></script>
     <script src="~/assets/js/products.js"></script>
 </body>

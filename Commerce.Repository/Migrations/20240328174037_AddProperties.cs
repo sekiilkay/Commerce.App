@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Commerce.Repository.Migrations
 {
     /// <inheritdoc />
-    public partial class initial : Migration
+    public partial class AddProperties : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -61,6 +61,9 @@ namespace Commerce.Repository.Migrations
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ImageUrl2 = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ImageUrl3 = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ImageUrl4 = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
                 },
                 constraints: table =>

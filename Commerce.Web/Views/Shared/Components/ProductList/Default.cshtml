@@ -1,0 +1,17 @@
+﻿@model List<Product>
+
+@{
+    Layout = null;
+}
+
+@foreach (var item in Model)
+{
+    <div class="product">
+        <div class="product-overlay"></div>
+        <img src="@item.ImageUrl" alt="Bluetooth Kulaklık Pro">
+        <div class="product-text">
+            <h6>Bluetooth<br>@item.Name</h6>
+            <a asp-controller="UserProduct" asp-action="AddCart" asp-route-productId="@item.Id">Daha Fazla</a>
+        </div>
+    </div>
+}

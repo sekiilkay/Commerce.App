@@ -45,6 +45,10 @@
                     <input id="password" asp-for="Password" type="password" placeholder="Parola Giriniz">
                 </div>
                 <button id="register-submit">Kayıt Ol</button>
+                <p style="color:#b6b6b6; text-align:center; font-size:1.4rem" >
+                    Zaten bir hesabınız var mı?
+                    <a asp-controller="Auth" asp-action="SignIn" style="color:white">Giriş Yap</a>
+                </p>
             </form>
         </section>
     </main>

@@ -130,6 +130,15 @@ namespace Commerce.Repository.Migrations
                     b.Property<string>("ImageUrl")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("ImageUrl2")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ImageUrl3")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ImageUrl4")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 

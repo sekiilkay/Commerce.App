@@ -13,7 +13,6 @@ namespace Commerce.Core.Services
         List<UserProduct> LoggedUserCart();
         void AddCart(UserProduct userProduct);
         bool DeleteCart(UserProduct userProduct);
-        void DeleteProductCart(UserProduct userProduct);
         List<CartViewModel> CartViewModel();
         void DeleteAllProduct();
     }

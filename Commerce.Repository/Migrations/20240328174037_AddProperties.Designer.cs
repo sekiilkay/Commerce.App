@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Commerce.Repository.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240327180300_initial")]
-    partial class initial
+    [Migration("20240328174037_AddProperties")]
+    partial class AddProperties
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -131,6 +131,15 @@ namespace Commerce.Repository.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ImageUrl")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ImageUrl2")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ImageUrl3")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ImageUrl4")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")

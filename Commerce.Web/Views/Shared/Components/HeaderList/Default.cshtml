@@ -1,0 +1,72 @@
+﻿@model List<CartViewModel>
+
+@if (User.Identity!.IsAuthenticated)
+{
+    <div class="container">
+        <div id="header-user">
+            <p>@User.Identity.Name</p>
+        </div>
+        <div id="header-button">
+            @if (Model.Any())
+            {
+                <i class="fa-solid fa-basket-shopping">
+                    <span style="position:absolute; top:-10px; width:10px; height:10px; background-color:red; border-radius:50%; right:0;"></span>
+                </i>
+            }
+            else
+            {
+                <i class="fa-solid fa-basket-shopping"></i>
+            }
+        </div>
+        <button id="header-logout">
+            <a style="color:white" asp-controller="Auth" asp-action="LogOut">Çıkış Yap</a>
+        </button>
+        <div id="header-basket">
+            <div id="basket-quit">
+                <i class="fa-solid fa-right-to-bracket"></i>
+            </div>
+            <div id="basket-list">
+                <ul>
+                    <li>
+                        @foreach (var item in Model)
+                        {
+                            <div class="basket-image">
+                                <img src="@item.ImageUrl" alt="">
+                            </div>
+                            <div class="basket-title">
+                                <h4>@item.Name</h4>
+                            </div>
+                            <div class="basket-count">
+                                <button class="basket-minus">
+                                    <a class="btn btn-outline-info" asp-controller="UserProduct" asp-action="DeleteCart" asp-route-productId="@item.ProductId">-</a>
+                                </button>
+                                <h6>@item.Count</h6>
+                                <button class="basket-plus">
+                                    <a class="btn btn-outline-info" asp-controller="UserProduct" asp-action="AddProductMyCart" asp-route-productId="@item.ProductId">+</a>
+                                </button>
+                            </div>
+                            <div class="basket-price">
+                                <h5>@item.Amount</h5>
+                            </div>
+                        }
+
+                    </li>
+                </ul>
+            </div>
+            <div id="basket-total">
+                <p>Toplam:</p>
+                @if (@Model.FirstOrDefault()?.TotalPrice == null)
+                {
+                    <h6>0₺</h6>
+                }
+                else
+                {
+                    <h6>@Model.FirstOrDefault()?.TotalPrice.ToString("C")</h6>
+                }
+            </div>
+            <button id="basket-button">
+                <a style="color:white" asp-controller="UserProduct" asp-action="AllDeleteCart">Sepeti Boşalt</a>
+            </button>
+        </div>
+    </div>
+}
